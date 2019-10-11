@@ -10,10 +10,13 @@ public class DirectionService {
 
 	private final UserService userService;
 	private final MessageService messageService;
+	private final CallBackQueryService callBackQUeryService;
 
-	public DirectionService(UserService userService, MessageService messageService) {
+	public DirectionService(UserService userService, MessageService messageService,
+							CallBackQueryService callBackQUeryService) {
 		this.userService = userService;
 		this.messageService = messageService;
+		this.callBackQUeryService = callBackQUeryService;
 	}
 
 
@@ -27,6 +30,7 @@ public class DirectionService {
 		} else if (update.getCallBackQuery() != null) {
 			update.getCallBackQuery().getMessage().setPlatform(Platform.COMMON);
 			User user = createUser(update.getCallBackQuery().getMessage().getChat().getId());
+			callBackQUeryService.callBackQueryToBot(update.getCallBackQuery(), user);
 		}
 
 

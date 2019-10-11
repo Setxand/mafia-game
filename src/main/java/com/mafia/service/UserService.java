@@ -20,4 +20,12 @@ public class UserService {
 			return userRepository.saveAndFlush(user);
 		});
 	}
+
+	public void setUserStatus(User.UserStatus roomConnectionStatus, User user) {
+
+	}
+
+	public User getUser(Integer id) {
+		return userRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid User ID"));
+	}
 }
