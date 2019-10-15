@@ -31,6 +31,8 @@ public class MessageService {
 
 		} else if (user.getStatus() != null) {
 			messageByStatus(message, user);
+		} else {
+			throw new BotException(message, "I don't know this command");
 		}
 
 	}
@@ -54,6 +56,7 @@ public class MessageService {
 
 		User host = userService.getUser(room.getHostId());
 
+		telegramClient.simpleMessage("Wait for host answer...", message);///todo add the pool of rejected users
 		message.getChat().setId(host.getChatId());
 		telegramClient.connectionQuestion(message, host.getChatId(), user.getChatId());
 	}

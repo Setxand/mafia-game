@@ -45,6 +45,6 @@ public class TelegramClient extends telegram.client.TelegramClient {
 	public void connectionQuestion(Message message, Integer hostId, Integer userId) {
 		String text = "Connect user " + message.getFrom().getFirstName() + " " + message.getFrom().getLastName() + "?";
 
-		simpleQuestion(CONNECTION_PL.name() + "&" + hostId + "&" + userId, text, message);
+		simpleQuestion(CONNECTION_PL.name() + "&" + userId, text, message);
 	}
 }

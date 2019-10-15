@@ -3,6 +3,7 @@ package com.mafia.service;
 import com.mafia.model.User;
 import com.mafia.repository.UserRepository;
 import org.springframework.stereotype.Service;
+import telegram.Message;
 
 @Service
 public class UserService {
@@ -13,10 +14,11 @@ public class UserService {
 		this.userRepository = userRepository;
 	}
 
-	public User createUser(Integer id) {
-		return userRepository.findById(id).orElseGet(() -> {
+	public User createUser(Message message) {
+		return userRepository.findById(message.getChat().getId()).orElseGet(() -> {
 			User user = new User();
-			user.setChatId(id);
+			user.setChatId(message.getChat().getId());
+			user.setName(message.getFrom().getFirstName() + " " + message.getFrom().getLastName());
 			return userRepository.saveAndFlush(user);
 		});
 	}

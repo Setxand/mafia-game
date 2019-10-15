@@ -3,6 +3,7 @@ package com.mafia.service;
 import com.mafia.client.Platform;
 import com.mafia.model.User;
 import org.springframework.stereotype.Service;
+import telegram.Message;
 import telegram.Update;
 
 @Service
@@ -24,19 +25,19 @@ public class DirectionService {
 
 		if (update.getMessage() != null) {
 			update.getMessage().setPlatform(Platform.COMMON);
-			User user = createUser(update.getMessage().getChat().getId());
+			User user = (User) createUser(update.getMessage());
 			messageService.messageFromBot(update.getMessage(), user);
 
 		} else if (update.getCallBackQuery() != null) {
 			update.getCallBackQuery().getMessage().setPlatform(Platform.COMMON);
-			User user = createUser(update.getCallBackQuery().getMessage().getChat().getId());
+			User user = createUser(update.getCallBackQuery().getMessage());
 			callBackQUeryService.callBackQueryToBot(update.getCallBackQuery(), user);
 		}
 
 
 	}
 
-	private User createUser(Integer id) {
-		return userService.createUser(id);
+	private User createUser(Message message) {
+		return userService.createUser(message);
 	}
 }

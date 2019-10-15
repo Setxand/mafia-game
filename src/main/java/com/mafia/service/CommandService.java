@@ -73,6 +73,7 @@ public class CommandService {
 		validator.checkUserInRoom(message, user);
 
 		Room room = roomService.createRoom(user);
-		telegramClient.simpleMessage("Your room has been created, it's id: " + room.getId(), message);
+		telegramClient.simpleMessage("Your room has been created, it's id: ", message);
+		telegramClient.simpleMessage(room.getId(), message);
 	}
 }

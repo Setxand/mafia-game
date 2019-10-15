@@ -55,4 +55,12 @@ public class RoomService {
 	public Room getRoom(String roomId) {
 		return roomRepo.findById(roomId).orElseThrow(() -> new IllegalArgumentException("Invalid User ID"));
 	}
+
+	@Transactional
+	public Room connectUserToRoom(User user, User userToConnect) {
+		Room room = getRoom(user.getRoomId());
+		room.getUsers().add(userToConnect);
+		userToConnect.setRoomId(room.getId());
+		return room;
+	}
 }

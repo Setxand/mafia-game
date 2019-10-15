@@ -21,6 +21,7 @@ public class User {
 
 	@Id
 	private Integer chatId;
+	private String name;
 	private Card card;
 	private String roomId;
 
