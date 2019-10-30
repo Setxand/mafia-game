@@ -1,6 +1,7 @@
 package com.mafia.service;
 
 import com.mafia.exceprion.BotException;
+import com.mafia.model.Card;
 import com.mafia.model.Room;
 import com.mafia.model.User;
 import org.springframework.stereotype.Service;
@@ -8,7 +9,7 @@ import telegram.Message;
 import telegram.client.TelegramClient;
 
 import javax.transaction.Transactional;
-import java.util.List;
+import java.util.*;
 
 import static com.mafia.model.User.UserStatus.ROOM_CONNECTION_STATUS;
 
@@ -18,11 +19,14 @@ public class CommandService {
 	private final TelegramClient telegramClient;
 	private final RoomService roomService;
 	private final ServiceValidator validator;
+	private final GameService gameService;
 
-	public CommandService(TelegramClient telegramClient, RoomService roomService, ServiceValidator validator) {
+	public CommandService(TelegramClient telegramClient, RoomService roomService, ServiceValidator validator,
+						  GameService gameService) {
 		this.telegramClient = telegramClient;
 		this.roomService = roomService;
 		this.validator = validator;
+		this.gameService = gameService;
 	}
 
 	@Transactional
@@ -47,10 +51,22 @@ public class CommandService {
 				connectToRoom(message, user);
 				break;
 
+			case "/startgame":
+				startGame(message, user);
+				break;
+
 			default:
 				throw new BotException(message, "Invalid command");
 		}
 
+	}
+
+	private void startGame(Message message, User user) {
+
+		Room room = roomService.getRoom(user.getRoomId());
+		List<User> users = room.getUsers();
+
+		gameService.start(users);
 	}
 
 
