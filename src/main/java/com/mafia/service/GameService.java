@@ -10,11 +10,8 @@ import java.util.*;
 @Service
 public class GameService {
 
-	private final Random random;
+	private static final Random random = new Random();
 
-	public GameService(Random random) {
-		this.random = random;
-	}
 
 	@Transactional
 	public void start(List<User> users) {
@@ -23,7 +20,7 @@ public class GameService {
 		users.forEach(u -> u.setCard(cardPack.pop()));
 	}
 
-	private Stack<Card> createCardPack(int size) {
+	private static Stack<Card> createCardPack(int size) {
 		List<Card> cards = new ArrayList<>();
 
 		int countOfMafia = 1;
