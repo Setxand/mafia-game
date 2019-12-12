@@ -24,4 +24,8 @@ public class ServiceValidator {
 		if (user.getRoomId() == null)
 			throw new BotException(message, "You aren't in the room now!");
 	}
+
+	public void checkCountInTheGame(int size, Message message) {
+		if (size < 5) throw new BotException(message, "Minimum players is 5!");
+	}
 }

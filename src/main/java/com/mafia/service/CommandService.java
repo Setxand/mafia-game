@@ -1,7 +1,6 @@
 package com.mafia.service;
 
 import com.mafia.exceprion.BotException;
-import com.mafia.model.Card;
 import com.mafia.model.Room;
 import com.mafia.model.User;
 import org.springframework.stereotype.Service;
@@ -63,10 +62,16 @@ public class CommandService {
 
 	private void startGame(Message message, User user) {
 
+
+
 		Room room = roomService.getRoom(user.getRoomId());
 		List<User> users = room.getUsers();
 
-		gameService.start(users);
+		validator.checkCountInTheGame(users.size(), message);
+
+		gameService.cardsArrangement(users);
+
+
 	}
 
 

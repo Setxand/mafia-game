@@ -6,12 +6,9 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.junit.MockitoJUnitRunner;
-import org.springframework.util.Assert;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
-import java.util.UUID;
 
 import static com.mafia.model.Card.*;
 import static org.junit.Assert.assertEquals;
@@ -54,7 +51,7 @@ public class GameServiceTest extends UnitTest {
 			userList.add(createUser());
 		}
 
-		gameService.start(userList);
+		gameService.cardsArrangement(userList);
 
 		return userList;
 	}

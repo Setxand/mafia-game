@@ -75,5 +75,7 @@ public class CallBackQueryService {
 			userToConnect.setStatus(null);
 			telegramClient.simpleMessage("The host of the room has rejected your request", message);
 		}
+
+		userToConnect.setStatus(null);
 	}
 }

@@ -14,7 +14,7 @@ public class GameService {
 
 
 	@Transactional
-	public void start(List<User> users) {
+	public void cardsArrangement(List<User> users) {
 		Stack<Card> cardPack = createCardPack(users.size());
 
 		users.forEach(u -> u.setCard(cardPack.pop()));
