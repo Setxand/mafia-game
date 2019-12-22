@@ -43,7 +43,7 @@ public class GameServiceTest extends UnitTest {
 	}
 
 	private void checkPerson(List<User> users, Card card, int countPerson) {
-		assertEquals(users.stream().filter(u -> u.getCard() == card).count(), countPerson);
+		assertEquals(countPerson, users.stream().filter(u -> u.getCard() == card).count());
 	}
 
 	private List<User> start(int count) {

@@ -39,7 +39,7 @@ public class GameService {
 		cards.add(Card.POLICE);
 		cards.add(Card.DOCTOR);
 
-		for (int i = 0; i < size - countOfMafia - 1; i++) {
+		for (int i = 0; i < size - countOfMafia - 2; i++) {
 			cards.add(Card.CITIZEN);
 		}
 
