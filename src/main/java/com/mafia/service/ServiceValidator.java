@@ -11,7 +11,7 @@ import telegram.Message;
 @Component
 public class ServiceValidator {
 
-	@Value("app.mode") private Boolean testMode;
+	@Value("${app.mode.test}") private Boolean testMode;
 
 	private final RoomService roomService;
 
