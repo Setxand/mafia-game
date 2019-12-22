@@ -14,7 +14,11 @@ public class GameService {
 
 
 	@Transactional
-	public void cardsArrangement(List<User> users) {
+	public void arrangeCards(List<User> users) {
+		if (users.size() == 1) {
+			users.get(0).setCard(Card.MAFIA);
+			return;
+		}
 		Stack<Card> cardPack = createCardPack(users.size());
 
 		users.forEach(u -> u.setCard(cardPack.pop()));

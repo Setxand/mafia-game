@@ -1,4 +1,4 @@
-package com.mafia.config;
+package com.mafia.configconst;
 
 
 import lombok.Getter;

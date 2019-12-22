@@ -1,6 +1,8 @@
 package com.mafia.client;
 
-import com.mafia.config.UrlConfig;
+import com.mafia.configconst.MediaConstants;
+import com.mafia.configconst.UrlConfig;
+import com.mafia.model.Card;
 import com.mafia.utils.PayloadUtils;
 import org.springframework.stereotype.Component;
 import telegram.Markup;
@@ -10,6 +12,7 @@ import telegram.button.InlineKeyboardButton;
 
 import java.util.ResourceBundle;
 
+import static com.mafia.configconst.MediaConstants.mediaConstantsMap;
 import static com.mafia.service.CallBackQueryPayload.CONNECTION_PL;
 import static com.mafia.service.CallBackQueryPayload.QUESTION_PL;
 
@@ -46,5 +49,10 @@ public class TelegramClient extends telegram.client.TelegramClient {
 		String text = "Connect user " + message.getFrom().getFirstName() + " " + message.getFrom().getLastName() + "?";
 
 		simpleQuestion(CONNECTION_PL.name() + "&" + userId, text, message);
+	}
+
+	public void sendCard(Card card, Message message) {
+		MediaConstants mediaConstants = mediaConstantsMap.get(card);
+		sendPhoto(mediaConstants.getPhotoId(), mediaConstants.getCaption(), null, message);
 	}
 }

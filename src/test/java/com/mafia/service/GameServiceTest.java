@@ -51,7 +51,7 @@ public class GameServiceTest extends UnitTest {
 			userList.add(createUser());
 		}
 
-		gameService.cardsArrangement(userList);
+		gameService.arrangeCards(userList);
 
 		return userList;
 	}

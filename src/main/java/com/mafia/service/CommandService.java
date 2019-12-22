@@ -5,7 +5,7 @@ import com.mafia.model.Room;
 import com.mafia.model.User;
 import org.springframework.stereotype.Service;
 import telegram.Message;
-import telegram.client.TelegramClient;
+import com.mafia.client.TelegramClient;
 
 import javax.transaction.Transactional;
 import java.util.*;
@@ -61,17 +61,13 @@ public class CommandService {
 	}
 
 	private void startGame(Message message, User user) {
-
-
-
 		Room room = roomService.getRoom(user.getRoomId());
 		List<User> users = room.getUsers();
 
-		validator.checkCountInTheGame(users.size(), message);
+//		validator.checkCountInTheGame(users.size(), message);
 
-		gameService.cardsArrangement(users);
-
-
+		gameService.arrangeCards(users);
+		telegramClient.sendCard(user.getCard(), message);
 	}
 
 
