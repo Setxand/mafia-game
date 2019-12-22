@@ -16,7 +16,7 @@ public class GameService {
 	@Transactional
 	public void arrangeCards(List<User> users) {
 		if (users.size() == 1) {
-			users.get(0).setCard(Card.MAFIA);
+			users.get(0).setCard(Card.CITIZEN);
 			return;
 		}
 		Stack<Card> cardPack = createCardPack(users.size());
@@ -37,6 +37,7 @@ public class GameService {
 			cards.add(Card.MAFIA);
 		}
 		cards.add(Card.POLICE);
+		cards.add(Card.DOCTOR);
 
 		for (int i = 0; i < size - countOfMafia - 1; i++) {
 			cards.add(Card.CITIZEN);

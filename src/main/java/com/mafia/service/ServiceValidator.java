@@ -25,7 +25,10 @@ public class ServiceValidator {
 			throw new BotException(message, "You aren't in the room now!");
 	}
 
-	public void checkCountInTheGame(int size, Message message) {
-		if (size < 5) throw new BotException(message, "Minimum players is 5!");
+	public void validateStartGame(User user, Room room, Message message) {
+		if (room.getUsers().size() < 5) throw new BotException(message, "Minimum players is 5!");
+
+		if (!user.getChatId().equals(room.getHostId()))
+			throw new BotException(message, "You are not a host of the game");
 	}
 }

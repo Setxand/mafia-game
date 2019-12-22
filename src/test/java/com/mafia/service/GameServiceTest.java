@@ -23,21 +23,23 @@ public class GameServiceTest extends UnitTest {
 	@Test
 	public void useStart() {
 		List<User> fiveUsers = start(5);
-		List<User> sixUsers = start(8);
+		List<User> eightUsers = start(8);
 		List<User> thirteenUsers = start(13);
 
 		checkPerson(fiveUsers, MAFIA, 1);
 		checkPerson(fiveUsers, POLICE, 1);
-		checkPerson(fiveUsers, CITIZEN, 3);
+		checkPerson(fiveUsers, CITIZEN, 2);
+		checkPerson(fiveUsers, DOCTOR, 1);
 
-
-		checkPerson(sixUsers, MAFIA, 2);
-		checkPerson(sixUsers, POLICE, 1);
-		checkPerson(sixUsers, CITIZEN, 5);
+		checkPerson(eightUsers, MAFIA, 2);
+		checkPerson(eightUsers, POLICE, 1);
+		checkPerson(eightUsers, CITIZEN, 4);
+		checkPerson(eightUsers, DOCTOR, 1);
 
 		checkPerson(thirteenUsers, MAFIA, 3);
 		checkPerson(thirteenUsers, POLICE, 1);
-		checkPerson(thirteenUsers, CITIZEN, 9);
+		checkPerson(thirteenUsers, CITIZEN, 8);
+		checkPerson(thirteenUsers, DOCTOR, 1);
 	}
 
 	private void checkPerson(List<User> users, Card card, int countPerson) {

@@ -64,8 +64,7 @@ public class CommandService {
 		Room room = roomService.getRoom(user.getRoomId());
 		List<User> users = room.getUsers();
 
-//		validator.checkCountInTheGame(users.size(), message);
-
+		validator.validateStartGame(user, room, message);
 		gameService.arrangeCards(users);
 		telegramClient.sendCard(user.getCard(), message);
 	}

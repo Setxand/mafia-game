@@ -9,7 +9,10 @@ import java.util.Map;
 @Getter
 public enum  MediaConstants {
 
-	MAFIA_PICT("AgADAgADsq0xG_ha-Eth6yB69LVujDSpwg8ABAEAAwIAA20AAxMPAgABFgQ", "You are mafia!");
+	MAFIA_PICT("AgADAgADUawxG7LZ-EublLzVGD2ZdjVpwQ8ABAEAAwIAA3gAAyYQAgABFgQ", "You are mafia!"),
+	CITIZEN_PICT("AgADAgADbKsxGw9_AUi1l4sTTt_Q-kvRug8ABAEAAwIAA3gAA5MFBwABFgQ", "You are citizen!"),
+	POLICE_PICT("AgADAgADVKwxG7LZ-EsvRZXJpKnn9uTEwg8ABAEAAwIAA3gAAy45AQABFgQ", "You are sheriff!"),
+	DOCTOR_PICT("AgADAgADaasxGw9_AUiMIMpHQZS9LYV4XA8ABAEAAwIAA3gAA0sdAwABFgQ", "You are doctor!");
 
 	private String photoId;
 	private String caption;
@@ -20,10 +23,12 @@ public enum  MediaConstants {
 	}
 
 
-
 	public static final Map<Card, MediaConstants> mediaConstantsMap = new HashMap<Card, MediaConstants>() {
 		{
 			put(Card.MAFIA, MAFIA_PICT);
+			put(Card.POLICE, POLICE_PICT);
+			put(Card.CITIZEN, CITIZEN_PICT);
+			put(Card.DOCTOR, DOCTOR_PICT);
 		}
 	};
 }
